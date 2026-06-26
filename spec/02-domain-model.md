@@ -110,6 +110,24 @@ Examples include:
 
 Venue access control is implementation-specific, but the visibility rules SHALL be enforced consistently across the system.
 
+## Cross-Venue Relationships
+
+Relationships MAY connect entities belonging to different Venues.
+
+Cross-Venue Relationships are subject to the access restrictions of every Venue involved.
+
+If a user has access to the local Venue but not the remote Venue, the implementation SHALL indicate that the Relationship exists while redacting information about the remote endpoint.
+
+The implementation SHALL NOT reveal the remote Venue name, Location, Object, Connection Point or other identifying metadata unless the user has permission to view that Venue.
+
+Example:
+
+```text
+Local Connection Point
+    connected_to
+[Restricted endpoint]
+```
+
 ---
 
 # 2.6 Baseline
