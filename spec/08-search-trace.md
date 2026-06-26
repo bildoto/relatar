@@ -272,6 +272,16 @@ Implementations SHOULD clearly indicate the active search scope.
 
 Search and Trace results SHALL respect Venue access restrictions.
 
+When a Trace encounters a Cross-Venue Relationship whose remote endpoint is outside the user's permitted access scope, the Trace SHALL show that a restricted Relationship exists and SHALL stop traversal at the access boundary.
+
+Example:
+
+```text
+Local Switch SFP 1
+    connected_to
+[Restricted endpoint]
+```
+
 ---
 
 # 8.9 Search Results
