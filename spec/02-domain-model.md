@@ -1,6 +1,6 @@
 # 2. Domain Model
 
-**Relatar Specification 0.1 – Draft**
+**Relatar Specification 0.2 – Draft**
 
 ---
 
@@ -34,6 +34,11 @@ Container
 Object
         ↓
 Connection Point
+
+Component
+        ▲
+        │
+Object
 ```
 
 Relationships connect these entities into a complete representation of the installation.
@@ -123,9 +128,9 @@ Containers SHALL inherit all properties of an Object.
 
 ---
 
-# 2.8 Object Type
+# 2.8 Component
 
-An Object Type defines the reusable characteristics of a class of equipment.
+An Component defines the reusable characteristics of a class of equipment.
 
 Examples include:
 
@@ -134,7 +139,7 @@ Examples include:
 * Kramer KDS-17DEC
 * Shure ULXD4
 
-An Object Type MAY define:
+An Component MAY define:
 
 * manufacturer
 * model
@@ -143,7 +148,7 @@ An Object Type MAY define:
 * default properties
 * documentation
 
-Object Types do not represent physical equipment.
+Components do not represent physical equipment.
 
 ---
 
@@ -159,7 +164,7 @@ Examples include:
 * AVK-2
 * Stage Box M2
 
-An Object MAY reference an Object Type.
+An Object MAY reference a Component.
 
 An Object SHALL exist in exactly one Location or Container.
 
@@ -251,7 +256,7 @@ The Domain Model follows these principles:
 * Objects interact only through Connection Points.
 * Physical connections and logical assignments are distinct concepts.
 * Relationships contain the knowledge of the system.
-* Object Types describe equipment; Objects describe installations.
+* Components describe engineering definitions; Objects describe installed instances.
 * Configurations extend the Baseline without modifying it.
 
 These principles apply to every Relatar implementation.

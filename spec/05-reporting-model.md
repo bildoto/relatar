@@ -1,6 +1,6 @@
 # 5. Reporting Model
 
-**Relatar Specification 0.1 – Draft**
+**Relatar Specification 0.2 – Draft**
 
 ---
 

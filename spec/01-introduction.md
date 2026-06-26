@@ -1,6 +1,6 @@
 # 1. Introduction
 
-**Relatar Specification 0.1 – Draft**
+**Relatar Specification 0.2 – Draft**
 
 ---
 
@@ -80,7 +80,7 @@ It contains the infrastructure that normally exists at the venue, including:
 * locations
 * cabinets
 * equipment
-* ports
+* connection points
 * permanent cables
 * permanent signal paths
 * default operating behaviour

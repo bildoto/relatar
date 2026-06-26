@@ -1,6 +1,6 @@
 # Relatar Specification
 
-Version 0.1 (Draft)
+Version 0.2 (Draft)
 
 ---
 
@@ -92,7 +92,7 @@ Relatar Server 1.3
 
 Implements
 
-Relatar Specification 1.1
+Relatar Specification 0.2
 
 ---
 
