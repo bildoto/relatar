@@ -150,9 +150,11 @@ If no Configuration is active, the Effective Installation is simply the Baseline
 
 # 1.6 Configurations
 
-Configurations describe temporary operational changes.
+Configurations describe temporary or alternative operational states of a venue.
 
-Examples include:
+A Configuration represents how the installation is intended to operate for a particular purpose without modifying the Baseline.
+
+Typical Configurations include:
 
 * Sunday Service
 * Christmas Concert
@@ -170,52 +172,71 @@ A Configuration may:
 * disable permanent connections
 * modify signal routing
 * activate specific operating modes
-* add temporary documentation
-* define temporary notes
+* include setup and teardown procedures
+* include documentation and operational notes
+* reference external documentation
 
-Configurations never modify the Baseline.
+Configurations are not limited to describing physical changes.
 
-Instead, they describe how the installation differs from it.
-
-## Configuration conflicts
-
-A conflict occurs when two or more Configuration layers attempt to modify the same resource in incompatible ways.
-
-Examples:
-
-- Two temporary objects assigned to the same physical port.
-- One Configuration disables a connection while another depends on it.
-- Two routes require exclusive use of the same device input.
-- One Configuration moves an object while another connects to it at its original location.
-- Two modes require contradictory state for the same route.
-
-Relatar SHALL detect Configuration conflicts when generating an Effective Installation.
-
-Relatar SHALL NOT resolve conflicts automatically.
-
-A Configuration containing unresolved conflicts SHALL be considered invalid for operational use.
-
-Users MUST resolve conflicts by creating an explicit override or by defining a new Configuration that represents the intended combined state.
+They may also describe operational knowledge required to reproduce a particular setup.
 
 ---
 
-# 1.7 Inheritance
+# 1.7 Evolution
 
-Every Configuration inherits from exactly one Baseline.
+Technical infrastructure is not static.
 
-A Configuration stores only the information that differs from the Baseline.
+Permanent installations evolve.
 
-Examples include:
+Operational procedures improve.
 
-* equipment temporarily relocated
-* additional microphones
-* temporary patching
-* temporary signal routes
-* overridden operating modes
+Temporary setups become recurring practices.
 
-This approach minimises duplication while preserving a single authoritative description of the permanent installation.
+Relatar is designed to preserve this evolution rather than overwrite it.
 
-Future versions of Relatar may support Configuration inheritance, allowing one Configuration to extend another.
+Both the Baseline and Configurations are expected to evolve over time.
+
+Future versions of Relatar may support immutable revision histories for both.
+
+Conceptually:
+
+```text
+Temple
+
+Baseline
+    Revision 1
+    Revision 2
+    Revision 3
+
+Christmas Concert
+    Revision 1
+    Revision 2
+
+Sunday Service
+    Revision 1
+    Revision 2
+```
+
+Revision history allows Relatar to answer questions such as:
+
+* What changed since last year's Christmas concert?
+* Which revision introduced this cable?
+* When was this routing modified?
+* What changed after the renovation?
+
+Revision management is considered an architectural capability of Relatar.
+
+Implementations MAY choose not to expose revision management initially, provided that the architecture does not prevent it from being introduced later.
+
+---
+
+# 1.8 Configuration Inheritance
+
+Every Configuration inherits from exactly one parent.
+
+Normally, this parent is the venue Baseline.
+
+Future versions of Relatar MAY allow Configurations to inherit from other Configurations.
 
 For example:
 
@@ -227,47 +248,113 @@ Baseline
                 └── Sunday Service + Livestream + Choir
 ```
 
----
+Configuration inheritance exists to reduce duplication by allowing specialised Configurations to extend existing operational setups.
 
-# 1.8 Single Source of Truth
+Implementations SHOULD avoid deep inheritance hierarchies.
 
-Relatar maintains one authoritative description of a venue.
-
-The Baseline contains the permanent infrastructure.
-
-Configurations contain only temporary differences.
-
-Reports, diagrams, route sheets and impact analyses are generated from these relationships rather than maintained independently.
-
-This ensures that all documentation remains consistent while avoiding unnecessary duplication.
+Long inheritance chains increase complexity and make operational behaviour more difficult to understand.
 
 ---
 
-# 1.9 Intended Use
+# 1.9 Configuration Conflicts
+
+Configuration inheritance may introduce conflicts.
+
+A conflict occurs when two or more inherited layers attempt to modify the same resource in incompatible ways.
+
+Examples include:
+
+* Two Configurations assigning different signals to the same physical input.
+* One Configuration disables a connection required by another.
+* Two routes require exclusive use of the same equipment.
+* Two Configurations relocate the same object to different locations.
+* Two Configurations require contradictory operating modes.
+
+Relatar SHALL detect configuration conflicts before producing an Effective Installation.
+
+Relatar SHALL NOT resolve conflicts automatically.
+
+Instead, implementations SHALL report every detected conflict and require explicit user intervention.
+
+One common resolution is to create a new Configuration representing the intended combined operational state.
+
+Configurations containing unresolved conflicts SHALL be considered invalid for operational use.
+
+---
+
+# 1.10 Effective Installation
+
+The Effective Installation represents the infrastructure visible to the user.
+
+Conceptually:
+
+```text
+Effective Installation
+
+=
+
+Baseline Revision
+
++
+
+Configuration Revision
+```
+
+If no Configuration is active, the Effective Installation is identical to the current Baseline.
+
+The Effective Installation is considered valid only if:
+
+* all inherited Configurations can be applied successfully;
+* no unresolved conflicts remain;
+* all required resources are available.
+
+The Effective Installation is the authoritative source for:
+
+* route tracing
+* reports
+* impact analysis
+* setup documentation
+* operational documentation
+
+---
+
+# 1.11 Single Source of Truth
+
+Relatar maintains one authoritative description of every venue.
+
+The Baseline describes the permanent installation.
+
+Configurations describe alternative operational states.
+
+Reports, diagrams, route sheets and impact analyses are derived from these relationships rather than maintained independently.
+
+This ensures consistency while eliminating unnecessary duplication.
+
+---
+
+# 1.12 Intended Use
 
 Relatar should enable users to answer questions such as:
 
 * Where is this device normally located?
 * Where is this device in the active Configuration?
-* What is connected to this port?
-* Which connector is required?
-* Where does this signal travel?
-* Which Configuration changes this route?
+* What changed compared to the Baseline?
+* Which Configuration introduced this route?
+* Which revision changed this setup?
 * What equipment is required for tomorrow's event?
-* What systems are affected if this cable fails?
-* What has changed compared to the Baseline?
+* Which systems are affected if this cable fails?
 
 The value of Relatar is measured by its ability to answer these questions accurately and consistently.
 
 ---
 
-# 1.10 Guiding Statement
+# 1.13 Guiding Statement
 
 Relatar exists to preserve technical knowledge and make complex infrastructure understandable.
 
 Its purpose is not merely to document equipment, but to describe how technical systems work together over time.
 
-By combining a permanent Baseline with temporary Configurations, Relatar provides an accurate representation of both the installation and its operational use.
+By combining a permanent Baseline with evolving Configurations, Relatar provides an accurate representation of both the installation and its operational use.
 
 In its simplest form:
 
