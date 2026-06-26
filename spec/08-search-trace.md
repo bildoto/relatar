@@ -282,6 +282,10 @@ Local Switch SFP 1
 [Restricted endpoint]
 ```
 
+The implementation SHALL NOT continue tracing into restricted Venues.
+
+That preserves operational truth without leaking restricted details.
+
 ---
 
 # 8.9 Search Results
