@@ -177,6 +177,26 @@ Configurations never modify the Baseline.
 
 Instead, they describe how the installation differs from it.
 
+# Configuration conflicts
+
+A conflict occurs when two or more Configuration layers attempt to modify the same resource in incompatible ways.
+
+Examples:
+
+- Two temporary objects assigned to the same physical port.
+- One Configuration disables a connection while another depends on it.
+- Two routes require exclusive use of the same device input.
+- One Configuration moves an object while another connects to it at its original location.
+- Two modes require contradictory state for the same route.
+
+Relatar SHALL detect Configuration conflicts when generating an Effective Installation.
+
+Relatar SHALL NOT resolve conflicts automatically.
+
+A Configuration containing unresolved conflicts SHALL be considered invalid for operational use.
+
+Users MUST resolve conflicts by creating an explicit override or by defining a new Configuration that represents the intended combined state.
+
 ---
 
 # 1.7 Inheritance
@@ -207,29 +227,9 @@ Baseline
                 └── Sunday Service + Livestream + Choir
 ```
 
-## 1.8 Configuration conflicts
-
-A conflict occurs when two or more Configuration layers attempt to modify the same resource in incompatible ways.
-
-Examples:
-
-- Two temporary objects assigned to the same physical port.
-- One Configuration disables a connection while another depends on it.
-- Two routes require exclusive use of the same device input.
-- One Configuration moves an object while another connects to it at its original location.
-- Two modes require contradictory state for the same route.
-
-Relatar SHALL detect Configuration conflicts when generating an Effective Installation.
-
-Relatar SHALL NOT resolve conflicts automatically.
-
-A Configuration containing unresolved conflicts SHALL be considered invalid for operational use.
-
-Users MUST resolve conflicts by creating an explicit override or by defining a new Configuration that represents the intended combined state.
-
 ---
 
-# 1.9 Single Source of Truth
+# 1.8 Single Source of Truth
 
 Relatar maintains one authoritative description of a venue.
 
@@ -243,7 +243,7 @@ This ensures that all documentation remains consistent while avoiding unnecessar
 
 ---
 
-# 1.10 Intended Use
+# 1.9 Intended Use
 
 Relatar should enable users to answer questions such as:
 
@@ -261,7 +261,7 @@ The value of Relatar is measured by its ability to answer these questions accura
 
 ---
 
-# 1.11 Guiding Statement
+# 1.10 Guiding Statement
 
 Relatar exists to preserve technical knowledge and make complex infrastructure understandable.
 
