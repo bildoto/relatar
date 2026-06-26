@@ -270,6 +270,8 @@ Supported scopes include:
 
 Implementations SHOULD clearly indicate the active search scope.
 
+Search and Trace results SHALL respect Venue access restrictions.
+
 ---
 
 # 8.9 Search Results
