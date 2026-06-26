@@ -332,7 +332,78 @@ This ensures consistency while eliminating unnecessary duplication.
 
 ---
 
-# 1.12 Intended Use
+# 1.12 Physical Connections and Logical Assignments
+
+Relatar distinguishes between **physical connections** and **logical assignments**.
+
+A physical connection represents a tangible relationship between two connection points.
+
+Examples include:
+
+* XLR cable between two devices
+* Fibre patch lead
+* HDMI cable
+* RJ45 network cable
+* Permanent building cabling
+
+A logical assignment represents a software-defined relationship required to make the system function.
+
+Examples include:
+
+* BLU Analog Input 1 assigned to Dante Transmit Channel 1
+* Dante Receive Channel 12 assigned to GLD Channel 20
+* Stage Box Socket 3 assigned to GLD Channel 20
+* Button Panel 2 assigned to recall "Full Auto + Dante"
+* Kramer Encoder assigned to Decoder 5
+
+Logical assignments are not physical connections.
+
+Instead, they describe how software-configurable systems are intended to use existing infrastructure.
+
+Relatar MAY document logical assignments whenever they are operationally relevant.
+
+Relatar SHOULD NOT attempt to model every internal processing block or proprietary implementation detail of specialist software.
+
+The objective is to document the assignments that must be configured by a technician, not the complete internal operation of a device.
+
+This distinction allows Relatar to remain vendor-independent while still documenting the software configuration necessary to reproduce an installation.
+
+---
+
+# 1.13 Planning and Implementation
+
+Relatar is intended to support both existing and planned installations.
+
+A planned installation may contain infrastructure that has not yet been built or configured.
+
+From the documented relationships, Relatar MAY generate implementation documentation, including:
+
+* Physical connection guides
+* Cable schedules
+* Patch panel schedules
+* Equipment installation lists
+* Software configuration guides
+* Commissioning checklists
+* Setup procedures
+* Teardown procedures
+
+Examples of generated software configuration tasks include:
+
+* Assign BLU Analog Input 1 to Dante Transmit Channel 1.
+* Assign Dante Receive Channel 12 to GLD Channel 20.
+* Configure Kramer Encoder 2 to stream to Decoder 5.
+* Recall the "Sunday Service" operating mode.
+* Enable the "Full Auto + Dante" microphone configuration.
+
+The purpose of these guides is to assist technicians in implementing the documented design.
+
+Relatar generates implementation instructions from documented relationships.
+
+It does not replace manufacturer-specific configuration software.
+
+---
+
+# 1.14 Intended Use
 
 Relatar should enable users to answer questions such as:
 
@@ -341,54 +412,10 @@ Relatar should enable users to answer questions such as:
 * What changed compared to the Baseline?
 * Which Configuration introduced this route?
 * Which revision changed this setup?
+* Which software assignments are required to commission this installation?
 * What equipment is required for tomorrow's event?
 * Which systems are affected if this cable fails?
 
 The value of Relatar is measured by its ability to answer these questions accurately and consistently.
 
 ---
-
-# 1.13 Technology-specific Diagnostics
-
-Relatar is designed to remain technology-independent.
-
-However, certain technologies expose concepts that are unique to their implementation and cannot be represented by the generic infrastructure model alone.
-
-To support these cases, Relatar MAY provide technology-specific diagnostic reports.
-
-Diagnostic reports analyse documented data and provide additional information without modifying the underlying infrastructure model.
-
-Examples include:
-
-* Dante flow utilisation
-* Fibre strand utilisation
-* Ethernet port utilisation
-* Power budget analysis
-* Wireless frequency allocation
-
-Technology-specific diagnostics SHALL be considered advisory.
-
-They MUST NOT modify the documented infrastructure or automatically alter system behaviour.
-
-For Dante systems:
-
-* Relatar MAY calculate Dante flow usage from assigned transmit channels.
-* Relatar MAY report the number of transmit or receive flows consumed by a device.
-* Relatar MAY warn when channel allocation results in inefficient flow usage.
-* Relatar SHOULD NOT automatically reassign Dante channel numbers or suggest routing changes that modify the documented design.
-
-Technology-specific diagnostics are intended to assist planning, optimisation and troubleshooting while preserving Relatar's vendor-independent architecture.
-
----
-
-# 1.14 Guiding Statement
-
-Relatar exists to preserve technical knowledge and make complex infrastructure understandable.
-
-Its purpose is not merely to document equipment, but to describe how technical systems work together over time.
-
-By combining a permanent Baseline with evolving Configurations, Relatar provides an accurate representation of both the installation and its operational use.
-
-In its simplest form:
-
-> **Know how everything is connected.**
