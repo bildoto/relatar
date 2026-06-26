@@ -146,7 +146,7 @@ Physical Tasks
 
 * Install equipment.
 * Connect cable PN-017.
-* Patch AVK-2 Port 14 to AVK-5 Port 14.
+* Patch AVK-2 patch panel connection point 14 to AVK-5 patch panel connection point 14.
 
 Software Tasks
 
@@ -179,7 +179,18 @@ Example queries:
 
 ---
 
-# 5.7 Configuration Reporting
+# 5.7 Diagnostic
+
+Examples:
+
+- Dante Flow Report
+- Power Budget Report
+- Fibre Utilisation Report
+- Unused Connection Point Report
+
+---
+
+# 5.8 Configuration Reporting
 
 Reports SHALL be generated within the context of a Baseline and, optionally, a Configuration.
 
@@ -194,7 +205,7 @@ Implementations SHOULD clearly identify which Configuration was used when genera
 
 ---
 
-# 5.8 Report Metadata
+# 5.9 Report Metadata
 
 Generated reports SHOULD include:
 
@@ -210,7 +221,7 @@ This information assists traceability and version control.
 
 ---
 
-# 5.9 Printability
+# 5.10 Printability
 
 Reports and Documents SHOULD be designed for both screen viewing and printed use.
 
@@ -220,7 +231,7 @@ Layouts SHOULD prioritise clarity over compactness.
 
 ---
 
-# 5.10 Architectural Principles
+# 5.11 Architectural Principles
 
 The Reporting Model follows these principles:
 

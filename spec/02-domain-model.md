@@ -107,7 +107,11 @@ Examples include:
 
 Locations MAY be hierarchical.
 
-Objects SHALL exist within exactly one Location.
+Objects SHALL have exactly one effective Location.
+
+An Object MAY be located directly in a Location or indirectly through a Container.
+
+If an Object is contained by a Container, its effective Location is inherited from that Container unless explicitly overridden by a Configuration.
 
 ---
 
@@ -130,7 +134,7 @@ Containers SHALL inherit all properties of an Object.
 
 # 2.8 Component
 
-An Component defines the reusable characteristics of a class of equipment.
+A Component defines the reusable characteristics of a class of equipment.
 
 Examples include:
 
@@ -139,7 +143,7 @@ Examples include:
 * Kramer KDS-17DEC
 * Shure ULXD4
 
-An Component MAY define:
+A Component MAY define:
 
 * manufacturer
 * model
@@ -163,10 +167,13 @@ Examples include:
 * Camera 3
 * AVK-2
 * Stage Box M2
+* Cable
 
 An Object MAY reference a Component.
 
-An Object SHALL exist in exactly one Location or Container.
+An Object SHALL exist directly in either one Location or one Container.
+
+An Object SHALL have exactly one effective Location after containment and Configuration overlays are resolved.
 
 An Object MAY contain one or more Connection Points.
 
@@ -206,11 +213,17 @@ Connection Points are connected, assigned and controlled through Relationships.
 
 Objects SHALL NOT connect directly to one another.
 
+When an Object references a Component, the Connection Point definitions provided by that Component become Object-specific Connection Points for that Object.
+
+Relationships SHALL reference Object-specific Connection Points, not the Component definitions directly.
+
 ---
 
 # 2.11 Capabilities
 
-Objects and Connection Points MAY define Capabilities.
+Components MAY define default Capabilities.
+
+Objects and Connection Points MAY inherit, extend or override those Capabilities where operationally required.
 
 Capabilities describe what an entity is capable of rather than how it is currently used.
 
@@ -248,7 +261,40 @@ Relationships are defined in the Relationship Model.
 
 ---
 
-# 2.13 Architectural Principles
+# 2.13 Identity
+
+Every entity within Relatar SHALL possess a stable identity.
+
+An entity's identity SHALL remain unchanged throughout its lifetime, regardless of changes to its attributes or relationships.
+
+Examples of attributes that MAY change include:
+
+* Name
+* Description
+* Location
+* Properties
+* Relationships
+
+These changes SHALL NOT affect the identity of the entity.
+
+For Objects, the referenced Component is considered part of the Object's technical identity.
+
+Changing an Object's Component SHOULD be treated as replacing the Object with a new Object rather than modifying the existing Object.
+
+The previous Object MAY be retained as historical data.
+
+Stable identities enable Relatar to:
+
+* preserve revision history;
+* compare Configurations and Baselines;
+* track Objects across relocations;
+* identify changes over time;
+* maintain reliable references between entities.
+
+Implementations SHALL ensure that an entity's identity remains unique within its scope and is never reused for a different entity.
+---
+
+# 2.14 Architectural Principles
 
 The Domain Model follows these principles:
 

@@ -8,7 +8,7 @@
 
 Relatar is a vendor-independent knowledge base for documenting, understanding and tracing technical infrastructure.
 
-Rather than documenting individual devices or producing static diagrams, Relatar models infrastructure as a collection of objects connected through explicit relationships.
+Rather than documenting individual devices or producing static diagrams, Relatar models infrastructure as a collection of Objects connected through explicit relationships.
 
 These relationships allow Relatar to answer practical questions about an installation while maintaining a single source of truth.
 
@@ -104,7 +104,7 @@ Examples include:
 
 Relationships are the primary source of knowledge within Relatar.
 
-Without relationships, infrastructure is merely a collection of isolated objects.
+Without relationships, infrastructure is merely a collection of isolated Objects.
 
 ---
 
@@ -267,7 +267,7 @@ Examples include:
 * Two Configurations assigning different signals to the same physical input.
 * One Configuration disables a connection required by another.
 * Two routes require exclusive use of the same equipment.
-* Two Configurations relocate the same object to different locations.
+* Two Configurations relocate the same Object to different locations.
 * Two Configurations require contradictory operating modes.
 
 Relatar SHALL detect configuration conflicts before producing an Effective Installation.
@@ -340,7 +340,7 @@ A physical connection represents a tangible relationship between two connection 
 
 Examples include:
 
-* XLR cable between two devices
+* XLR cable between two Objects
 * Fibre patch lead
 * HDMI cable
 * RJ45 network cable
@@ -419,3 +419,38 @@ Relatar should enable users to answer questions such as:
 The value of Relatar is measured by its ability to answer these questions accurately and consistently.
 
 ---
+
+# 1.15 Technology-specific Diagnostics
+
+Relatar is designed to remain technology-independent.
+
+However, certain technologies expose concepts that are unique to their implementation and cannot be represented by the generic infrastructure model alone.
+
+To support these cases, Relatar MAY provide technology-specific diagnostic reports.
+
+Diagnostic reports analyse documented data and provide additional information without modifying the underlying infrastructure model.
+
+Technology-specific diagnostics SHALL be considered advisory.
+
+They MUST NOT modify the documented infrastructure or automatically alter system behaviour.
+
+For Dante systems:
+
+- Relatar MAY calculate Dante flow usage from assigned transmit channels.
+- Relatar MAY report the number of transmit or receive flows consumed by a device.
+- Relatar MAY warn when channel allocation results in inefficient flow usage.
+- Relatar SHOULD NOT automatically reassign Dante channel numbers or modify documented routing.
+
+---
+
+# 1.16 Guiding Statement
+
+Relatar exists to preserve technical knowledge and make complex infrastructure understandable.
+
+Its purpose is not merely to document equipment, but to describe how technical systems work together over time.
+
+By combining a permanent Baseline with evolving Configurations, Relatar provides an accurate representation of both the installation and its operational use.
+
+In its simplest form:
+
+> **Know how everything is connected.**

@@ -29,7 +29,7 @@ Examples include:
 * a Connection Point is physically connected to another Connection Point
 * a Connection Point is assigned to another Connection Point
 * a Control activates a Configuration
-* a Signal depends on a route
+* a Route depends on a physical connection
 
 Relationships may describe physical structure, logical routing, control behaviour or dependency.
 
@@ -157,6 +157,8 @@ Rules:
 * Connector types MAY differ if the cable or adapter supports the connection.
 * Implementations MAY validate compatibility using Capabilities.
 * `connected_to` SHOULD NOT be used for software-defined routing.
+* A bidirectional physical cable MAY be represented by one `connected_to` Relationship with bidirectional capability metadata rather than two separate Relationships.
+
 
 ---
 
@@ -200,6 +202,7 @@ Rules:
 * `routes_to` MAY pass through multiple Relationships.
 * `routes_to` MAY branch to multiple destinations.
 * `routes_to` SHOULD be used when the purpose is to describe signal behaviour rather than physical wiring.
+* `routes_to` describes a step or dependency within a Route. It does not replace the Route entity itself.
 
 ---
 
@@ -230,7 +233,7 @@ Describes dependency.
 Examples:
 
 ```text
-Piano Signal depends_on Snake M2
+Piano Route depends_on Snake M2
 Livestream depends_on Streaming Laptop
 Main PA depends_on DSP-1
 ```
@@ -240,6 +243,7 @@ Rules:
 * `depends_on` MAY be derived from other Relationships.
 * `depends_on` MAY also be entered explicitly where dependency is not obvious.
 * Impact reports MAY use `depends_on`.
+* Implementations SHOULD derive dependency relationships where possible and only store explicit `depends_on` relationships when the dependency cannot be inferred from other Relationships.
 
 ---
 
@@ -358,7 +362,21 @@ Implementations SHALL be able to exclude inactive Relationships from the Effecti
 
 ---
 
-# 3.11 Relationship Principle
+# 3.11 Relationship Identity and Uniqueness
+
+A Relationship SHALL have its own identity.
+
+Implementations SHOULD prevent duplicate Relationships with identical type, source, target and scope unless the duplicates represent distinct real-world relationships.
+
+Example:
+
+Two separate physical cables between the same two Connection Points MAY be represented as separate Relationships if both cables exist.
+
+Accidental duplicate Relationships SHOULD be detected by validation.
+
+---
+
+# 3.12 Relationship Principle
 
 The central principle of Relatar is:
 

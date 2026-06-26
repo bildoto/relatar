@@ -38,6 +38,10 @@ A Route represents **engineering intent** rather than merely the physical implem
 
 The physical infrastructure, logical assignments and transport technologies together implement the Route.
 
+Source and Destination are Route roles.
+
+An Object or Connection Point MAY act as a Source in one Route and as a Destination in another.
+
 ---
 
 # 4.3 Route Properties
@@ -61,9 +65,9 @@ Future versions of Relatar MAY extend the set of supported Route properties with
 
 ---
 
-# 4.4 Route Components
+# 4.4 Route Elements
 
-A Route may consist of:
+A Route may consist of one or more Route Elements, including:
 
 * Sources
 * Physical Connections
@@ -178,6 +182,8 @@ Examples include:
 Logical Assignments are represented using `assigned_to` relationships.
 
 Assignments are considered part of a Route.
+
+Software-defined assignments at system boundaries are in scope even when they are configured inside manufacturer software.
 
 ---
 

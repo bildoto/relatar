@@ -173,6 +173,10 @@ Validation rules are advisory.
 
 Implementations MAY use them to identify design issues and configuration errors.
 
+Component validation rules define possible constraints.
+
+Implementations evaluate those constraints against specific Objects and Relationships.
+
 ---
 
 # 6.9 Documentation
@@ -199,6 +203,13 @@ Custom Components SHALL behave identically to built-in Components.
 
 This enables organisations to model proprietary equipment, custom-built devices and locally defined infrastructure.
 
+## Generic Components
+
+* Generic 24-port patch panel
+* Generic 8-channel snake
+* Generic HDMI display
+* Generic network switch
+
 ---
 
 # 6.11 Library Sharing
@@ -218,6 +229,12 @@ Components MAY evolve over time.
 Implementations SHOULD preserve compatibility between updated Components and existing Objects.
 
 Changes to a Component SHOULD NOT silently invalidate existing installations.
+
+Objects SHOULD retain a reference to the version of the Component from which they were instantiated.
+
+Implementations MAY provide mechanisms for migrating Objects to newer Component versions.
+
+Such migrations SHALL require explicit user action.
 
 ---
 
