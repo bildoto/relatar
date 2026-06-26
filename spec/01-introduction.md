@@ -177,7 +177,7 @@ Configurations never modify the Baseline.
 
 Instead, they describe how the installation differs from it.
 
-# Configuration conflicts
+## Configuration conflicts
 
 A conflict occurs when two or more Configuration layers attempt to modify the same resource in incompatible ways.
 
