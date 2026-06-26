@@ -80,7 +80,39 @@ A Venue MAY contain multiple Configurations.
 
 ---
 
-# 2.5 Baseline
+# 2.5 Venue Access
+
+Access to a Venue MAY be restricted to specific users or groups.
+
+Implementations SHALL ensure that users can only access Venues for which they have permission.
+
+Venue access restrictions SHALL apply to:
+
+* Baselines
+* Configurations
+* Objects
+* Connection Points
+* Relationships
+* Routes
+* Reports
+* Search results
+* Trace results
+
+Search and Trace operations SHALL NOT reveal entities from Venues outside the user's permitted access.
+
+Implementations MAY support role-based permissions within a Venue.
+
+Examples include:
+
+* Viewer
+* Editor
+* Administrator
+
+Venue access control is implementation-specific, but the visibility rules SHALL be enforced consistently across the system.
+
+---
+
+# 2.6 Baseline
 
 The Baseline is the canonical description of a Venue.
 
@@ -92,7 +124,7 @@ The Baseline SHALL always represent the current intended permanent installation.
 
 ---
 
-# 2.6 Location
+# 2.7 Location
 
 A Location represents a physical area within a Venue.
 
@@ -115,7 +147,7 @@ If an Object is contained by a Container, its effective Location is inherited fr
 
 ---
 
-# 2.7 Container
+# 2.8 Container
 
 A Container is an Object capable of containing other Objects.
 
@@ -132,7 +164,7 @@ Containers SHALL inherit all properties of an Object.
 
 ---
 
-# 2.8 Component
+# 2.9 Component
 
 A Component defines the reusable characteristics of a class of equipment.
 
@@ -156,7 +188,7 @@ Components do not represent physical equipment.
 
 ---
 
-# 2.9 Object
+# 2.10 Object
 
 An Object represents a specific physical or logical instance.
 
@@ -181,7 +213,7 @@ An Object MAY participate in Relationships.
 
 ---
 
-# 2.10 Connection Point
+# 2.11 Connection Point
 
 A Connection Point is an addressable interface through which signals, power, data or control information may enter, leave or be assigned.
 
@@ -219,7 +251,7 @@ Relationships SHALL reference Object-specific Connection Points, not the Compone
 
 ---
 
-# 2.11 Capabilities
+# 2.12 Capabilities
 
 Components MAY define default Capabilities.
 
@@ -243,7 +275,7 @@ Capabilities may be used to validate Relationships and assist planning.
 
 ---
 
-# 2.12 Relationships
+# 2.13 Relationships
 
 Relationships define how entities interact.
 
@@ -261,7 +293,7 @@ Relationships are defined in the Relationship Model.
 
 ---
 
-# 2.13 Identity
+# 2.14 Identity
 
 Every entity within Relatar SHALL possess a stable identity.
 
@@ -294,7 +326,7 @@ Stable identities enable Relatar to:
 Implementations SHALL ensure that an entity's identity remains unique within its scope and is never reused for a different entity.
 ---
 
-# 2.14 Architectural Principles
+# 2.15 Architectural Principles
 
 The Domain Model follows these principles:
 
