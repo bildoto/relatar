@@ -348,7 +348,40 @@ The value of Relatar is measured by its ability to answer these questions accura
 
 ---
 
-# 1.13 Guiding Statement
+# 1.13 Technology-specific Diagnostics
+
+Relatar is designed to remain technology-independent.
+
+However, certain technologies expose concepts that are unique to their implementation and cannot be represented by the generic infrastructure model alone.
+
+To support these cases, Relatar MAY provide technology-specific diagnostic reports.
+
+Diagnostic reports analyse documented data and provide additional information without modifying the underlying infrastructure model.
+
+Examples include:
+
+* Dante flow utilisation
+* Fibre strand utilisation
+* Ethernet port utilisation
+* Power budget analysis
+* Wireless frequency allocation
+
+Technology-specific diagnostics SHALL be considered advisory.
+
+They MUST NOT modify the documented infrastructure or automatically alter system behaviour.
+
+For Dante systems:
+
+* Relatar MAY calculate Dante flow usage from assigned transmit channels.
+* Relatar MAY report the number of transmit or receive flows consumed by a device.
+* Relatar MAY warn when channel allocation results in inefficient flow usage.
+* Relatar SHOULD NOT automatically reassign Dante channel numbers or suggest routing changes that modify the documented design.
+
+Technology-specific diagnostics are intended to assist planning, optimisation and troubleshooting while preserving Relatar's vendor-independent architecture.
+
+---
+
+# 1.14 Guiding Statement
 
 Relatar exists to preserve technical knowledge and make complex infrastructure understandable.
 
